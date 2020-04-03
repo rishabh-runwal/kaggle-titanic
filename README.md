@@ -59,7 +59,24 @@ for i in [train, test]:
 train = train.drop(['Ticket'], axis=1)
 test = test.drop(['Ticket'], axis=1)
 ```
-- Then we dropped the columns which do not contribute much to the survival rate of passengers from the train and test data frames.
-- For training the classifier, we used four different methods: Logistic Regression, Second degree Logistic Regression, KNN Classifier and the Random Forest Classifier.
-- The accuracies of all four processes were calculated and the confusion Matrices were also displayed. The one with the maximum accuracy was selected for predicting the survival of the test set of passengers.
-- The predicted data was saved to a csv file for submission.
+- Building Machine Learning Models: Logistic Regression, Second degree Logistic Regression, KNN Classifier and the Random Forest Classifier.
+```
+x=train.iloc[:,1:9]
+y=train.iloc[:,0]
+
+X_train, X_test, y_train, y_test = train_test_split(x, y,test_size = 42,random_state=0)
+
+classifier=KNeighborsClassifier(n_neighbors=7)
+classifier.fit(X_train,y_train)
+```
+- Checking for Model Accuracy and Looking at Confusion Matrices
+```
+y_pred = cross_val_predict(classifier,X_train,y_train,cv=10)
+print(classifier.score(X_test,y_test))
+prediction = classifier.predict(test)
+
+sns.heatmap(confusion_matrix(y_train,y_pred),annot=True,fmt='3.0f',cmap="summer")
+plt.title('Confusion_matrix for KNN', y=1.05, size=15)
+
+```
+- ***The predicted data was saved to a csv file for submission.***
