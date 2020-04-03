@@ -36,7 +36,9 @@ test = pd.read_csv(r"C:\Users\Rishabh\Downloads\titanic (1)\test.csv")
 sns.distplot(train['Fare'])
 plt.show()
 ```
-<img src="Fare_ditribution_pre.jpeg" width="324" height="324">
+![Kernel Density Estimation | 646x426 ,50%](Fare_ditribution_pre.jpeg)
+
+
 - Data Preprocessing
 ```
 train.loc[train["Sex"]=="male","Sex"]=0
@@ -46,6 +48,9 @@ train.loc[train["Sex"]=="female","Sex"]=1
 ```
 train["Fare"] = train["Fare"].fillna(train["Fare"].median())
 ```     
+![Kernel Density Estimation | 646x426 ,50%](Fare_ditribution_post.jpeg)
+
+
 - Creating New Features
 ```
 for i in [train, test]:
@@ -79,4 +84,7 @@ sns.heatmap(confusion_matrix(y_train,y_pred),annot=True,fmt='3.0f',cmap="summer"
 plt.title('Confusion_matrix for KNN', y=1.05, size=15)
 
 ```
+![Confusion Matrix | 646x426 ,50%](Confusion_matrix.jpeg)
+
+
 - ***The predicted data was saved to a csv file for submission.***
