@@ -12,7 +12,20 @@ The Titanic Problem is based on the sinking of the ‘Unsinkable’ ship Titanic
 - *Sklearn*
 
 ## Methodology
-• Firstly, we imported all the necessary data analysis, plotting and ML libraries.
+- Importing all the necessary libraries.
+'''
+...
+import pandas as pd
+from sklearn import tree
+from sklearn.svm import SVC
+from sklearn import linear_model
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import preprocessing
+....
+...
+'''
 • Then we imported the ‘train’ and ‘test’ csv files and assigned them to pandas’ data frames.
 • Then we checked the density of passengers in certain divisions by plotting its graph vs fare, age, embarked, sex and cabin columns.
 • After analyzing the density, we divided the given data such that regions with maximum deviations in densities of passengers can be grouped together for increased accuracy.
