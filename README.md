@@ -36,7 +36,7 @@ test = pd.read_csv(r"C:\Users\Rishabh\Downloads\titanic (1)\test.csv")
 sns.distplot(train['Fare'])
 plt.show()
 ```
-
+<img src="Fare_ditribution_pre.jpeg" width="324" height="324">
 - Data Preprocessing
 ```
 train.loc[train["Sex"]=="male","Sex"]=0
@@ -45,7 +45,7 @@ train.loc[train["Sex"]=="female","Sex"]=1
 - Imputing Median values
 ```
 train["Fare"] = train["Fare"].fillna(train["Fare"].median())
-```
+```     
 - Creating New Features
 ```
 for i in [train, test]:
