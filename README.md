@@ -12,7 +12,7 @@ The Titanic Problem is based on the sinking of the ‘Unsinkable’ ship Titanic
 - *Sklearn*
 
 ## Methodology
-- Importing all the necessary libraries.
+- Importing the libraries.
 ```
 ...
 import pandas as pd
@@ -25,17 +25,40 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn import preprocessing
 ...
 ```
-- Reading the test and train csv files and loading them to Pandas dataframes
+- Getting the Data
+```
+train = pd.read_csv(r'C:\Users\Rishabh\Downloads\titanic (1)\train.csv')
+test = pd.read_csv(r"C:\Users\Rishabh\Downloads\titanic (1)\test.csv")
+```
 
-- Checking the density of passengers in certain divisions by plotting its graph vs fare, age, embarked, sex and cabin columns.
+- Data Analysis
+```
+sns.distplot(train['Fare'])
+plt.show()
+```
 
-- After analyzing the density, dividing the given data such that regions with maximum deviations in densities of passengers can be grouped together for increased accuracy.
-- Use numbers in place of alphabets as the algorithms work better with digits. So, we replaced all columns containing alphabets with numbers by assigning each alphabet to a specific number.
-- Empty and NaN values were replaced by the median of the remaining values in its column respectively.
-- In the ‘Cabin’ column, we extracted first letter of cabin number and replaced them by numbers and empty places were assigned to zero.
-- We analyzed the data in the ‘Fare’ and ‘Age’ columns and classified it to produce optimum results.
-- We performed all above operations for both train and test.
-
+- Data Preprocessing
+```
+train.loc[train["Sex"]=="male","Sex"]=0
+train.loc[train["Sex"]=="female","Sex"]=1
+```
+- Imputing Median values
+```
+train["Fare"] = train["Fare"].fillna(train["Fare"].median())
+```
+- Creating New Features
+```
+for i in [train, test]:
+        i['Fam_Size'] = np.where((i['SibSp']+i['Parch']) == 0 , 1,
+                            np.where((i['SibSp']+i['Parch']) <= 3,2, 3))
+        del i['SibSp']
+        del i['Parch']
+```
+- Dropping Irrelevant Features
+```
+train = train.drop(['Ticket'], axis=1)
+test = test.drop(['Ticket'], axis=1)
+```
 - Then we dropped the columns which do not contribute much to the survival rate of passengers from the train and test data frames.
 - For training the classifier, we used four different methods: Logistic Regression, Second degree Logistic Regression, KNN Classifier and the Random Forest Classifier.
 - The accuracies of all four processes were calculated and the confusion Matrices were also displayed. The one with the maximum accuracy was selected for predicting the survival of the test set of passengers.
