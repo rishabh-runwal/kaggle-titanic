@@ -1,5 +1,6 @@
 # Kaggle's Titanic Challenge
-My analysis for the 'Titanic: Machine Learning from Disaster' competition, hosted by Kaggle.com
+My analysis for the 'Titanic: Machine Learning from Disaster' competition, hosted by Kaggle.com   
+
 (Performed as a part of Coursework under Object Oriented Programming ECL-205)
 
 ## About the Problem
